@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <form [formGroup]="employeeForm">
+        <div class="form-group" [ngClass]="{'has-error' : employeeForm.get('firstName').errors}">
+          <label>First Name</label><br>
+          <input type="text" id="firstName" formControlName="firstName" required>
+          <span class="help-block" *ngIf="employeeForm.get('firstName').errors && (employeeForm.get('firstName').touched || 
+             employeeForm.get('firstName').dirty)">
+            <span *ngIf="employeeForm.controls['firstName'].errors.required" class="text-danger">
+            Please enter FirstName</span>
+          <span *ngIf="employeeForm.controls['firstName'].errors.minlength || employeeForm.controls['firstName'].errors.maxlength" class="text-danger">
+                   Firstname must be greater than 3 charactres and lessthan 16 characters</span>
+          </span>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error' : employeeForm.get('lastName').errors}">
+          <label>Last Name</label><br>
+          <input type="text" formControlName="lastName" required>
+          <span class="help-block" *ngIf="employeeForm.get('lastName').errors && (employeeForm.get('lastName').touched || 
+              employeeForm.get('lastName').dirty)">
+             <span    *ngIf="employeeForm.controls['lastName'].errors.required" class="text-danger">
+              Please enter LastName</span>
+          <span *ngIf="employeeForm.controls['lastName'].errors.minlength || employeeForm.controls['lastName'].errors.maxlength" class="text-danger">
+              LastName must be greater than 3 charactres and lessthan 16 characters</span>
+          </span>
+        </div>
+        <div class="form-group">
+
+          <label>Email ID</label><br>
+          <input type="email" formControlName="emailID" required>
+          <span class="help-block" *ngIf="employeeForm.get('emailID').errors && (employeeForm.get('emailID').touched || 
+             employeeForm.get('emailID').dirty)">
+            <span *ngIf="employeeForm.get('emailID').errors && (employeeForm.get('emailID').touched || 
+              employeeForm.get('emailID').dirty)" class="text-danger">Please enter Valid Email ID</span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>Contact Number</label><br>
+          <input type="text" formControlName="contactNumber" minlength="10" (keypress)="checkphonenumber()" appNumberOnly>
+          <span class="help-block" *ngIf="employeeForm.get('contactNumber').errors && (employeeForm.get('contactNumber').touched || 
+                employeeForm.get('contactNumber').dirty)">
+               <span  *ngIf="employeeForm.controls['contactNumber'].errors.required" class="text-danger">
+                   Please enter Contact Number</span>
+          <span *ngIf="employeeForm.controls['contactNumber'].errors.minlength || employeeForm.controls['contactNumber'].errors.maxlength" class="text-danger">
+                    contactNumber must be 10 numbers only.</span>
+          <span class="text-danger" *ngIf="phonenumFag && !employeeForm.controls['contactNumber'].errors.required">Phone number must be starts with 6,or 7or 8 or 9</span >
+             </span>
+        </div>
+        <div class="form-group">
+          <label>Password</label><br>
+          <input type="password" formControlName="password">
+          <span class="help-block" *ngIf="employeeForm.get('password').errors && (employeeForm.get('password').touched || 
+             employeeForm.get('password').dirty)">
+            <span  *ngIf="employeeForm.controls['password'].errors.required" class="text-danger">
+               Please enter Password</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label><br>
+          <input type="password" formControlName="confirmPassword">
+          <span class="help-block" *ngIf="employeeForm.get('confirmPassword').errors && (employeeForm.get('confirmPassword').touched || 
+             employeeForm.get('confirmPassword').dirty)">
+          <span   *ngIf="employeeForm.controls['confirmPassword'].errors.required" class="text-danger">
+                    Please enter ConfirmPassword  </span>
+          </span>
+        </div>
+        <div class="error-msg" *ngIf="employeeForm.value.password !== employeeForm.value.confirmPassword" class="text-danger">
+          Passwords doesn't match.
+        </div>
+        <div class="row">
+          <div class="form-group" style="margin-top: 10px; margin-bottom: 10px">
+            <button type="submit" [disabled]="!employeeForm.valid" (click)="submitemployeeData(employeeForm.value)">Submit</button>
+            <button type="submit" style="margin-left: 10px" (click)="resetAll(['firstName','lastName','emailID','contactNumber','password','confirmPassword'])">reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{employeeData | json}}

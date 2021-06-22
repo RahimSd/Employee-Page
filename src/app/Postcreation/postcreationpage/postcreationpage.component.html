@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <p *ngIf="errorshow" class="text-danger">Please Enter title and Body </p>
+    <p *ngIf="bodymaxlengthfalg" class="text-danger">Body allows 50 Letters only </p>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <form [formGroup]="postUserdataformgroup">
+
+        <label>titlle: </label>
+        <input type="text" formControlName="titleCntrl" > <br>
+        <label>body: </label>
+        <input type="text" formControlName="bodyCntrl"> <br>
+        <button (click)="postusersData(postUserdataformgroup.value)">post</button>
+        
+        <button (click)="reserAll()">reset</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="row col-lg-12">
+    <div *ngIf="showflag">
+      <div *ngFor="let x of response; let i : index" [attr.id]="x.id">
+        <div>{{x.titleCntrl}}</div>
+        <div>{{x.bodyCntrl}}</div>
+        <button (click)="deletedata(x)">deletetitle</button>
+      </div>
+    </div>
+  </div>
+</div>

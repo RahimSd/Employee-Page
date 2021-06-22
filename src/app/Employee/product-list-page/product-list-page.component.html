@@ -1,0 +1,35 @@
+<div class="container-fluid" id="componentID">
+  <button (click)="previousRoute()" style="float: right">back</button>
+  <div class="row">
+    <div class="col-xs-4 col-sm-8 col-md-8 col-lg-8">
+      <h4>Product Details</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price </th>
+            <th>Total Price of Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productListdata  ; let j =index;">
+            <td>{{product.productCntrl}}</td>
+            <td>{{product.quantityCntrl}}</td>
+            <td>{{product.priceCntrl}}</td>
+            <td >{{product.priceCntrl * product.quantityCntrl}}</td>
+            <td><i class="fa fa-trash" aria-hidden="true" (click)="deleteproduct(product)"></i>
+              <i class="fa fa-plus" aria-hidden="true" style="margin-left: 10px" (click)="addproduct(product)"></i>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+      <div style="float: right"> <strong>Total Price RS: {{getTotalpriceData}}</strong></div>
+      
+      <br>
+      <button id="btn-print" (click)="printproduct()">print</button>
+    </div>
+  </div>
+</div>

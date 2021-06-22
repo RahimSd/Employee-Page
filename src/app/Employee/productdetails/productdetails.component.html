@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <p *ngIf="errorFlagshow == 'product'" class="text-danger">Please Enter Product </p>
+    <p *ngIf="errorFlagshow == 'quantity'" class="text-danger">Please Enter quantity </p>
+    <p *ngIf="errorFlagshow == 'price'" class="text-danger">Please Enter price </p>
+    <p *ngIf="errorFlagshow == 'totalprice'" class="text-danger">Please Enter totalprice </p>
+<!--<div class="help-block" *ngIf="emploeeregisterForm.get('email').errors && (emploeeregisterForm.get('email').touched || 
+emploeeregisterForm.get('email').dirty)">
+<div *ngIf="emploeeregisterForm.get('email').errors && (emploeeregisterForm.get('email').touched || 
+emploeeregisterForm.get('email').dirty)">
+Please enter Valid Email ID
+
+</div>
+
+</div> -->
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+
+      <form [formGroup]="productForm">
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-inline col-lg-12">
+               <label>Product</label><br>
+             <input type="text" id="productCntrl" class="form-control" formControlName="productCntrl">
+                 <span class="help-block" *ngIf="productForm.get('productCntrl').errors && (productForm.get('productCntrl').touched || 
+                  productForm.get('productCntrl').dirty)">              
+                 <span *ngIf="productForm.controls['productCntrl'].errors.required">Please enter Product</span>
+                 </span>
+            </div>
+            <div class="form-inline col-lg-12">
+              <label>Quantity</label><br>
+              <input type="text" id="quantityCntrl" class="form-control" formControlName="quantityCntrl" appNumberOnly>
+              <span class="help-block" *ngIf="productForm.get('quantityCntrl').errors && (productForm.get('quantityCntrl').touched || 
+              productForm.get('quantityCntrl').dirty)">              
+             <span *ngIf="productForm.controls['quantityCntrl'].errors.required">Please enter Quantity</span>
+             </span>
+            </div>
+            <div class="form-group">
+              <label>Price</label><br>
+              <input type="text" id="priceCntrl" class="form-control" formControlName="priceCntrl" appNumberOnly>
+              <span class="help-block" *ngIf="productForm.get('priceCntrl').errors && (productForm.get('priceCntrl').touched || 
+              productForm.get('priceCntrl').dirty)">              
+             <span *ngIf="productForm.controls['priceCntrl'].errors.required">Please enter Price</span>
+             </span>
+            </div>
+            <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary btn-test" (click)="productDetails(productForm.value)">Register</button>
+            <button type="submit" class="btn btn-primary" style="margin-left:10px" (click)="resetAll()">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

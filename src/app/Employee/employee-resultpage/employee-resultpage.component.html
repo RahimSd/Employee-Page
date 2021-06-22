@@ -1,0 +1,47 @@
+
+<div class="container-fluid">
+  <button (click)="previousRoute()" style="float: right">Back</button>
+  <div class="row" >
+    <div class="col-lg-4 col-md-12">
+      
+    <input class=" form-control" type="text" [(ngModel)] ="FilterSearchBox" placeholder="Search By Model">
+    
+   
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Employee Id</th>
+          <th>Employye Name</th>
+          <th>Email</th>
+          <th>Employee Salary</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employe of emplyeedata | search:FilterSearchBox | paginate:{ itemsPerPage: 3, currentPage: p}; let j = index " [attr.id]="employe.id">
+          <td>{{ employe.employeeID}}</td>
+          <td>{{employe.employeeName}}</td>
+          <td>{{employe.email}}</td>
+          <td>{{employe.emploeeSalary}}</td>
+          <td><i class="fa fa-trash" aria-hidden="true" (click)="deleteemployyedata(employe)"></i>
+            <i class="fas fa-edit" (click)="updateEmployeeData(employe)"></i>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class=" col-lg-3" style="float: right">
+      
+        <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+      
+    </div>
+    <div class=" col-lg-3" style="float: right"><br>
+      
+<a routerLink="/employeeRegister" >AddEmployeeRigister</a >
+    </div>
+  </div>
+  
