@@ -15,6 +15,8 @@ import { NumberOnlyDirectiveDirective } from './Directives/number-only-directive
 import { ProductdetailsComponent } from './Employee/productdetails/productdetails.component';
 import { ProductListPageComponent } from './Employee/product-list-page/product-list-page.component';
 import { MenuBarComponent } from './Employee/menu-bar/menu-bar.component';
+import { AutofocusDirectiveDirective } from './Directives/autofocus-directive.directive';
+import { TristateComponentComponent } from './Trisate/tristate-component/tristate-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { MenuBarComponent } from './Employee/menu-bar/menu-bar.component';
     ProductdetailsComponent,
     ProductListPageComponent,
     MenuBarComponent,
+    AutofocusDirectiveDirective,
+    TristateComponentComponent,
      
     
   ],

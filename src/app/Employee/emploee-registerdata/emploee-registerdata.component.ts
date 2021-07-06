@@ -21,6 +21,7 @@ export class EmploeeRegisterdataComponent implements OnInit, OnDestroy {
     this.getUpdateData();
   }
   generateform() {
+    
     this.emploeeregisterForm = this.fb.group({
       employeeID: new FormControl('', ),
       employeeName: new FormControl('', ),
@@ -30,7 +31,7 @@ export class EmploeeRegisterdataComponent implements OnInit, OnDestroy {
     })
   }
   employeeRegister(data) {
-
+    console.log('this', this);
     if (!this.sharedservice.isEmptyVal(data.employeeName) && !this.sharedservice.isEmptyVal(data.email) && !this.sharedservice.isEmptyVal(data.emploeeSalary)) {
       this.sharedservice.employeeresponse.push(data);
 
@@ -80,6 +81,9 @@ export class EmploeeRegisterdataComponent implements OnInit, OnDestroy {
           this.emploeeregisterForm.get('employeeName').setValue(ele.employeeName);
           this.emploeeregisterForm.get('emploeeSalary').setValue(ele.emploeeSalary);
           this.emploeeregisterForm.get('email').setValue(ele.email);
+        }, err => {
+          console.log(err);
+          
         });
 
       }

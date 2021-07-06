@@ -24,4 +24,5 @@ export class SharedServiceComponent implements OnInit {
       return false;
     }
   }
+ 
 }

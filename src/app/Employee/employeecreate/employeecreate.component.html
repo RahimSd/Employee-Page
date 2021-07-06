@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-12" *ngIf="showceateFor ; else elseshow">
       <form [formGroup]="employeeForm">
-        <div class="form-group" [ngClass]="{'has-error' : employeeForm.get('firstName').errors}">
+        <div class="form-inline" [ngClass]="{'has-error' : employeeForm.get('firstName').errors}">
           <label>First Name</label><br>
-          <input type="text" id="firstName" formControlName="firstName" required>
+          <input type="text" id="firstName" formControlName="firstName" required (keypress) ="getVal()" appAutofocusDirective>
           <span class="help-block" *ngIf="employeeForm.get('firstName').errors && (employeeForm.get('firstName').touched || 
              employeeForm.get('firstName').dirty)">
             <span *ngIf="employeeForm.controls['firstName'].errors.required" class="text-danger">
@@ -16,7 +16,7 @@
 
         <div class="form-group" [ngClass]="{'has-error' : employeeForm.get('lastName').errors}">
           <label>Last Name</label><br>
-          <input type="text" formControlName="lastName" required>
+          <input type="text" formControlName="lastName" required (keypress)="getvalues($event)">
           <span class="help-block" *ngIf="employeeForm.get('lastName').errors && (employeeForm.get('lastName').touched || 
               employeeForm.get('lastName').dirty)">
              <span    *ngIf="employeeForm.controls['lastName'].errors.required" class="text-danger">
@@ -73,10 +73,34 @@
           <div class="form-group" style="margin-top: 10px; margin-bottom: 10px">
             <button type="submit" [disabled]="!employeeForm.valid" (click)="submitemployeeData(employeeForm.value)">Submit</button>
             <button type="submit" style="margin-left: 10px" (click)="resetAll(['firstName','lastName','emailID','contactNumber','password','confirmPassword'])">reset</button>
+            <button type="submit" style="margin-left: 10px" (click)="increedata()">incre</button>
+            <button type="submit" style="margin-left: 10px" (click)="decreedata()">decree</button>
           </div>
         </div>
       </form>
     </div>
+    <div class="">
+      <form [formGroup]="userForm">
+          <div class="form-control">
+              <input type="name" formControlName="name" (keydown.enter)="userForm.value" appAutofocusDirective #name>
+            </div>
+            <button (click)="getUser(userForm.value)">click</button>
+      </form>
+      <div *ngFor="let user of usersData">
+        
+        <div class="my-2" [ngStyle]="{'background-color': getuserstatuscolor() }" [ngClass]="{offline: bankStatus === 'offline' , online :bankStatus ==='online'}">
+            {{user.name}} {{userID}} is {{bankStatus}}
+          </div>
+      </div>
+    </div>
+  
   </div>
+ <ng-template #elseshow>
+<div >
+  NO creation form
 </div>
-{{employeeData | json}}
+ </ng-template>
+</div>
+{{mypromise | async }}
+{{getinputval}}
+

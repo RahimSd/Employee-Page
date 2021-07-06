@@ -13,6 +13,10 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          <th class="th-checkbox">
+            
+            <app-tristate-checkbox class="toggle-all" [items]="emplyeedata" ></app-tristate-checkbox>
+          </th>
           <th>Employee Id</th>
           <th>Employye Name</th>
           <th>Email</th>
@@ -22,6 +26,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let employe of emplyeedata | search:FilterSearchBox | paginate:{ itemsPerPage: 3, currentPage: p}; let j = index " [attr.id]="employe.id">
+          <td class="td-checkbox">
+            <input type="checkbox" [ngClass]="{'mat-primary':true,'mat-accent':false}" [(ngModel)]="employe.isSelected">
+           
+          </td>
           <td>{{ employe.employeeID}}</td>
           <td>{{employe.employeeName}}</td>
           <td>{{employe.email}}</td>
@@ -33,6 +41,7 @@
         </tr>
       </tbody>
     </table>
+    <button (click)="getemployeeData()">getrecords</button>
     </div>
     <div class=" col-lg-3" style="float: right">
       
