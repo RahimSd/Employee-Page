@@ -26,9 +26,7 @@ export class TristateComponentComponent implements OnInit {
       if (!this._items) { return; }
       var count: number = 0;
       for (var i: number = 0; i < this._items.length; i++) {       
-        count += this._items[i].isSelected ? 1 : 0;
-        console.log('items', this._items);
-        
+        count += this._items[i].isSelected ? 1 : 0;        
       }
       if (count > 0 && count < i) {
         this.checkboxindeterminate = true;
@@ -60,8 +58,6 @@ export class TristateComponentComponent implements OnInit {
   topLevelChange() {
     for (var i: number = 0; i < this._items.length; i++) {
       this._items[i].isSelected = this.topLevel;
-      console.log('ittt', this._items);
-      console.log('toplevel', this.topLevel);
       
     }
   this.valueChange.emit();
